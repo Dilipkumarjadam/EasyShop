@@ -156,6 +156,7 @@ namespace EFLYER.Repository
                             RegOId = Convert.ToInt32(dr["RegOId"]),
                             OrderDate = Convert.ToString(dr["OrderDate"]),
                             TotalAmount = Convert.ToDecimal(dr["TotalAmount"]),
+                            Status = Convert.ToString(dr["OrderStatus"])
                         });
                     }
                     return list;
@@ -196,6 +197,43 @@ namespace EFLYER.Repository
                 }
             }
         }
+
+        public List<OrderDTO> GetOrderdItemData(int ID)
+        {
+            using (SqlConnection con = new SqlConnection(this.SqlConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand("OrderedItemsP", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    List<OrderDTO> list = new List<OrderDTO>();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@ID",ID);
+                    da.Fill(dt);
+                    con.Close();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        list.Add(new OrderDTO
+                        {
+                            CartId = dr["CartId"] != DBNull.Value ? Convert.ToInt32(dr["CartId"]) : 0,
+                            RegCId = dr["RegCId"] != DBNull.Value ? Convert.ToInt32(dr["RegCId"]) : 0,
+                            ProductCId = dr["ProductCId"] != DBNull.Value ? Convert.ToInt32(dr["ProductCId"]) : 0,
+                            Quantity = dr["Quantity"] != DBNull.Value ? Convert.ToInt32(dr["Quantity"]) : 0,
+                            PricePerUnit = dr["PricePerUnit"] != DBNull.Value ? Convert.ToDecimal(dr["PricePerUnit"]) : 0m,
+                            TotalPrice = dr["TotalPrice"] != DBNull.Value ? Convert.ToDecimal(dr["TotalPrice"]) : 0m,
+                            ProductName = dr["ProductName"] != DBNull.Value ? Convert.ToString(dr["ProductName"]) : string.Empty,
+                            ProductImagePath = dr["ProductImagePath"] != DBNull.Value ? Convert.ToString(dr["ProductImagePath"]) : string.Empty,
+                            Description = dr["Description"] != DBNull.Value ? Convert.ToString(dr["Description"]) : string.Empty,
+                            CategoryName = dr["CategoryName"] != DBNull.Value ? Convert.ToString(dr["CategoryName"]) : string.Empty
+                        });
+                    }
+                    return list;
+                }
+            }
+        }
+
 
         public List<ProductDTO> EditProductGetData()
         {

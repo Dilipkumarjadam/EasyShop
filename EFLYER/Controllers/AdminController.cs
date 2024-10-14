@@ -30,9 +30,17 @@ namespace EFLYER.Controllers
             return View(row);
         }
 
+        [HttpGet]
+        public ActionResult CustomerOrderHistory()
+        {
+            var UserId = HttpContext.Session.GetInt32("UserId");
+            var row = _adminRepository.ViewOrders().Where(x => x.RegOId == UserId);
+            return View(row);
+        }
+
         public ActionResult OrderDetails(int Id)
         {
-            var row = _adminRepository.GetAllCartData().Where(x => x.RegCId == Id);
+            var row = _adminRepository.GetOrderdItemData(Id);
             return View(row);
         }
 

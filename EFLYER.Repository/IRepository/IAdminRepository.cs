@@ -21,6 +21,7 @@ namespace EFLYER.Repository
         public List<DropDownDTO> GetCategory();
         public List<ProductDTO> EditProductGetData();
         public List<OrderDTO> GetAllCartData();
+        public List<OrderDTO> GetOrderdItemData(int ID);
         public List<OrderDTO> ViewOrders();
         #endregion
 

@@ -26,6 +26,7 @@ namespace EFLYER.DTOs
         public int CategoryCId { get; set; }
         public IFormFile ProductImage { get; set; }
         public string CategoryName { get; set; }
+        public string Status { get; set; }
 
     }
 }

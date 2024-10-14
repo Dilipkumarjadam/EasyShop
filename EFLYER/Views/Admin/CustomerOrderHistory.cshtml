@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <p>
-            <a class="btn btn-primary" asp-action="AdminIndex">Home</a>
+            <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Home</a>
         </p>
         <table class="table">
             <thead>
@@ -27,7 +27,7 @@
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th>
-                       Customer ID
+                        Customer ID
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.OrderDate)
@@ -58,9 +58,9 @@
                             @Html.DisplayFor(modelItem => item.TotalAmount)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("OrderDetails", "OrderDetails", new { id = item.OrderId}) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                           
+                            @Html.ActionLink("OrderDetails", "OrderDetails", new { id = item.OrderId }) |
+                            @Html.ActionLink("Cancel Order", "", new { /* id=item.PrimaryKey */ })
                         </td>
                     </tr>
                 }

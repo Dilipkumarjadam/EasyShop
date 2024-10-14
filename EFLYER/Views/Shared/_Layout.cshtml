@@ -93,12 +93,25 @@
                         <span class="toggle_icon" onclick="openNav()"><img src="~/images/toggle-icon.png"></span>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                All Category
+                                My Orders
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a href="/orders/pending" class="dropdown-item">
+                                    <i class="fa fa-hourglass-start mr-2" aria-hidden="true"></i>
+                                    Pending Orders
+                                </a>
+                                <a href="/orders/completed" class="dropdown-item">
+                                    <i class="fa fa-check-circle mr-2" aria-hidden="true"></i>
+                                    Completed Orders
+                                </a>
+                                <a href="/orders/cancelled" class="dropdown-item">
+                                    <i class="fa fa-times-circle mr-2" aria-hidden="true"></i>
+                                    Cancelled Orders
+                                </a>
+                                <a href="@Url.Action("CustomerOrderHistory","Admin")" class="dropdown-item">
+                                    <i class="fa fa-list mr-2" aria-hidden="true"></i>
+                                    All Orders
+                                </a>
                             </div>
                         </div>
                         <div class="main">
@@ -128,7 +141,7 @@
                                 <ul>
                                     <li>
                                         <a href="@Url.Action("CartIndex", "Order")">
-                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                             <span class="padding_10">Cart</span>
                                             <span id="cart-quantity" class="badge badge-pill badge-danger"></span>
                                         </a>
