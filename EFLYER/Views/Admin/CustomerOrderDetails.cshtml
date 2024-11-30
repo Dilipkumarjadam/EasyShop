@@ -10,25 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" type="text/css" href="~/css/style.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="~/css/responsive.css">
-    <!-- fevicon -->
     <link rel="icon" href="~/images/fevicon.png" type="image/gif" />
-    <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.min.css">
-    <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- font awesome -->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--  -->
-    <!-- owl stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="~/css/owl.carousel.min.css">
-    <link rel="stylesoeet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <style>
         :root {
@@ -71,14 +62,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="containerr">
         <div class="header_section_top">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="custom_menu">
                         <ul>
                             <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                            <li><a href="#">AboutUs</a></li>
+                            <li><a href="#">About Us</a></li>
                             <li><a href="#">New Releases</a></li>
                             <li><a href="#">Today's Deals</a></li>
                             <li><a href="#">Customer Service</a></li>
@@ -89,36 +80,42 @@
         </div>
     </div>
     <div class="container">
+
+        <a class="btn btn-warning" href="@Url.Action("CustomerOrderHistory","Admin")">Back</a>
         <table class="table">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.OrderId)</th>
-                    <th>@Html.DisplayNameFor(model => model.Status)</th>
-                    <th>Customer ID</th>
-                    <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
-                    <th></th>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>Category</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                        <td>@Html.DisplayFor(modelItem => item.RegOId)</td>
-                        <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
                         <td>
-                            @Html.ActionLink("Details", "CustomerOrderDetails", new { id = item.OrderId }) |
-                            @Html.ActionLink("Cancel Order", "Cancel", new { id = item.OrderId })
+                            @if (!string.IsNullOrEmpty(item.ProductImagePath))
+                            {
+                                <img src="@Url.Content(item.ProductImagePath)" alt="Book Image" style="width: 100px; height: auto;" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Image/default.jpg")" alt="Default Image" style="width: auto; height: 200px;" />
+                            }
                         </td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

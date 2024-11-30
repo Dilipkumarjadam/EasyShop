@@ -24,12 +24,27 @@ namespace EFLYER.Controllers
             return View();
         }
 
+      
+
+        [HttpGet]
+        public ActionResult CustomerOrderDetails(int Id)
+        {
+            var row = _adminRepository.GetOrderdItemData(Id);
+            return View(row);
+        }
+
         public ActionResult ViewOrders()
         {
             var row = _adminRepository.ViewOrders();
             return View(row);
         }
-
+        [HttpGet]
+        public ActionResult OrderDetails(int Id)
+        {
+            var row = _adminRepository.GetOrderdItemData(Id);
+            return View(row);
+        }
+       
         [HttpGet]
         public ActionResult CustomerOrderHistory()
         {
@@ -38,12 +53,9 @@ namespace EFLYER.Controllers
             return View(row);
         }
 
-        public ActionResult OrderDetails(int Id)
-        {
-            var row = _adminRepository.GetOrderdItemData(Id);
-            return View(row);
-        }
+    
 
+     
 
         public ActionResult GetProduct()
         {
